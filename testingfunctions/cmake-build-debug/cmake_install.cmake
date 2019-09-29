@@ -1,4 +1,4 @@
-# Install script for directory: /home/rob/appsecurity/testingfunctions
+# Install script for directory: /home/rob/appsecurity/app-security/testingfunctions
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/rob/appsecurity/testingfunctions/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/rob/appsecurity/app-security/testingfunctions/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

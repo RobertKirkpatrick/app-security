@@ -56,124 +56,143 @@ int hash_function(const char* word)
  * 	bool check_word(const char* word, hashmap_t hashtable[]);
 */
 
-//function to check if a word is correctly spelled
-/*fuction check_word(string word, hashmap hashtable[])
+/**
+ * Array misspelled is populated with words that are misspelled. Returns the length of misspelled.
+ */
+/**
+ * Inputs:
+ *  fp:         A file pointer to the document to check for spelling errors.
+ *  hashtable:  The hash table used to determine spelling
+ *  misspelled: An empty char* array to be populated with misspelled words.
+ *              This array will never be greater than 1000 words long.
+ *
+ * Returns:
+ *  int:        The number of words in the misspelled arary.
+ *
+ * Modifies:
+ *  misspelled: This array will be filled with misspelled words.
+ *
+ * Example:
+ *  int num_misspelled = check_words(text_file, hashtable, misspelled);
+ **/
+/*
+int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[])
 {
-    Set int bucket to the output of hash_function(word).
-    Set hashmap_t cursor equal to hashmap[bucket].
-    While cursor is not NULL:
-        If word equals cursor->word:
-            return True.
-        Set curosr to cursor->next.
-    Set int bucket to the output of hash_function(word).
-    Set hashmap_t cursor equal to hashmap[bucket].
-    While cursor is  not NULL:
-        If lower_case(word) equals curosr->word:
-            return True.
-        Set curosr to cursor->next.
-    return False.
+    //Set int num_misspelled to 0.
+    int num_misspelled = 0;
+    //While line in fp is not EOF (end of file):
+    while(fgets(line, LENGTH, fp) != NULL) {
+        //malloc new node
+        hashmap_t new_node = (node *) malloc(sizeof(node));
+        //Read the line.
+
+        //Split the line on spaces.
+        //For each word in line:
+        //Remove punctuation from beginning and end of word.
+        //If not check_word(word):
+        //append word to misspelled.
+        //Increment num_misspelled.
+        //Return num_misspelled.
+        free(new_node);
+        return num_misspelled;
+    }
 }*/
 
-//function to load the list of words into the hash map
-bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[])
+//function to check if a word is correctly spelled
+bool check_word(const char* word, hashmap_t hashtable[])
 {
-    /**
-     * Loads dictionary into memory.  Returns true if successful else false.
-     */
-    /**
-     * Inputs:
-     *  dictionary_file:    Path to the words file.
-     *  hashtable:          The hash table to be populated.
-     *
-     * Returns:
-     *  bool:       Whether or not the hashmap successfully populated.
-     *
-     * Modifies:
-     *  hashtable: This hashmap should be filled with words from the file provided.
-     **/
-    int bucket;
+    //Set int bucket to the output of hash_function(word).
+    int bucket = hash_function(word);
+    //Set hashmap_t cursor equal to hashmap[bucket].
+    node *curr = hashtable[bucket];
+    //printf("%s\n", curr->word);
+    printf("%s\n", word);
+    //While cursor is not NULL:
+
+    while(curr != NULL){
+        //If word equals cursor->word:
+        if( strcmp( word, curr ->word)==0) {
+            return true;
+        }
+        else{
+            //Set cursor to cursor->next.
+            curr = curr ->next;
+            if( strcmp( word, curr ->word)==0){
+                return true;
+            }
+
+        }curr = NULL;
+    }return false;
+
+}
+
+bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
+    int bucket = 0;
     //Initialize all values in hash table to NULL.
     for (int i=0; i < HASH_SIZE;i++){
-         hashtable[i] = NULL;
+        hashtable[i] = NULL;
 
     }
-    //Open dict_file from path stored in dictionary.
+
     FILE* fp = fopen(dictionary_file, "r");
-    char word[255]; //maydelete
-    if (fp == NULL){
+
+    if (fp == NULL) {
         printf("No file found");
         exit(0);
     }
-    //If dict_file is NULL:
-        //return false.
+    //Start reading in lines
+    char *line = (char*) malloc(sizeof(char) * LENGTH);
+    hashmap_t new_node = (node*) malloc(sizeof(node));
+    hashmap_t curr= (node*) malloc(sizeof(node));
 
-    //While word in dict_file is not EOF (end of file):
-    fgets(word, 255, (FILE*) fp);{
-        printf("%s\n", word);
-        hashmap_t new_node;
-        new_node -> next = NULL;
-        new_node -> word = word;
-        bucket = hash_function(word);
-        if (hashtable[bucket] == NULL)
-        {
-            hashtable[bucket]=new_node;
-        }else{
-            new_node->next = NULL;
-            new_node ->word = word;
-    }
-    /*
-    while(!feof(fp)){
-        int line = 0;
-        str word = fscanf(fp, "%[^\n]");
-        printf("scanned line is %s \n", word)
-        hashmap_t new_node;
-        new_node -> next = NULL;
-        new_node -> word = word;
-        bucket = hash_function(word);
-        if (hashtable[bucket] == NULL)
-        {
-            hashtable[bucket]=new_node;
-        }else{
-            new_node->next = NULL;
-            new_node ->word = word;
+    while(fgets(line,LENGTH, fp) != NULL){
+        //malloc new node
 
+        new_node -> next = NULL;
+        strcpy(new_node -> word, line);
+        bucket = hash_function(line);
+        curr = hashtable[bucket];
+
+        if (curr == NULL) //if there isn't a word, then add it and point to null
+        {
+            //new_node is assigned the word, and pointer next
+
+            hashtable[bucket]= new_node;
+            //hashtable[bucket] = new_node;
+            //printf("%i\n", bucket);
+            printf("%s\n", &(hashtable[bucket]->word));
+
+        }else
+            { //should add another conditional to check for more than one node at the collisiion
+            while(curr-> next != NULL){
+                curr = curr->next;
+            }
+            curr ->next = new_node;
+            //new_node->next = hashtable[bucket];
+            //hashtable[bucket] = new_node; //this doesn't seem right but is in the pseudcode
+            //new_node ->next = NULL;
+
+            //hashtable[bucket]=curr;
+            printf("%s\n", curr->word);
         }
 
-    }*/
+
+    }
+    free(line);
+
     fclose(fp);
-        //Set hashmap_t new_node to a new node.
-        //Set new_node->next to NULL.
-        //Set new_node->word equal to word.
-        //Set int bucket to hash_function(word).
-        //if hashtable[bucket] is NULL:
-            //Set hashtable[bucket] to new_node.
-        //else:
-            //Set new_node->next to hashtable[bucket].
-            //Set hashtable[bucket] to new_node.
-    //Close dict_file.
+
+    return true;
 }
 
-/*
-function check_words(file fp, hashmap hashtable[], string misspelled[])
-{
-    Set int num_misspelled to 0.
-    While line in fp is not EOF (end of file):
-        Read the line.
-        Split the line on spaces.
-        For each word in line:
-            Remove punctuation from beginning and end of word.
-            If not check_word(word):
-                Append word to misspelled.
-                Increment num_misspelled.
-    Return num_misspelled.
-}
-*/
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
     //int num_misspelled = check_words(text_file, hashtable, misspelled);
-    bool success = load_dictionary("wordlist.txt", hashtable);
-    printf(%B, success);
+    bool success = load_dictionary("/home/rob/appsecurity/app-security/testingfunctions/wordlist.txt", hashtable);
+    printf("%d\n", success);
 
+    //bool test = check_word(word2, hashtable);
+    //printf("%d\n", test);
     return 0;
 }
