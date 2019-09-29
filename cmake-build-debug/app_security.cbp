@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="app_security"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/rob/appsecurity/app-security/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/rob/appsecurity/app-security/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="app_security">
+				<Option output="/home/rob/appsecurity/app-security/cmake-build-debug/app_security" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/rob/appsecurity/app-security/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/rob/appsecurity/app-security/."/>
+					<Add directory="/home/rob/appsecurity/app-security/AppSecAssignment1"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 app_security"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="app_security/fast">
+				<Option output="/home/rob/appsecurity/app-security/cmake-build-debug/app_security" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/rob/appsecurity/app-security/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/rob/appsecurity/app-security/."/>
+					<Add directory="/home/rob/appsecurity/app-security/AppSecAssignment1"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 app_security/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/rob/appsecurity/app-security/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/rob/appsecurity/app-security/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/rob/appsecurity/app-security/AppSecAssignment1/Makefile">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/AppSecAssignment1/dictionary.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/AppSecAssignment1/dictionary.h">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/AppSecAssignment1/test_main.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/dictionary.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/dictionary.h">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/functiontest/main.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/spell.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/sum.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/test_main.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/valgrind/valgrindtest.c">
+			<Option target="app_security"/>
+		</Unit>
+		<Unit filename="/home/rob/appsecurity/app-security/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
