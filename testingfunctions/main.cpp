@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 //#include "dictionary.h"
 #include <stdbool.h>
 #include <string.h>
@@ -80,22 +81,29 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[])
 {
     //Set int num_misspelled to 0.
     int num_misspelled = 0;
-    //While line in fp is not EOF (end of file):
-    while(fgets(line, LENGTH, fp) != NULL) {
-        //malloc new node
-        hashmap_t new_node = (node *) malloc(sizeof(node));
-        //Read the line.
+    while(num_mispelled <MAX_MISSPELLED) {
+        char *word= (char *) malloc(sizeof(char) * LENGTH);
+        //While line in fp is not EOF (end of file):
+        //while (fgets(line, LENGTH + 1, fp) != NULL) {
+        while(getwor)
+            //malloc new node
+            hashmap_t new_node = (node *) malloc(sizeof(node));
 
-        //Split the line on spaces.
-        //For each word in line:
-        //Remove punctuation from beginning and end of word.
-        //If not check_word(word):
-        //append word to misspelled.
-        //Increment num_misspelled.
-        //Return num_misspelled.
-        free(new_node);
-        return num_misspelled;
+            //Read the line.
+            puts(line);
+            //Split the line on spaces.
+
+            //For each word in line:
+            //Remove punctuation from beginning and end of word.
+            //If not check_word(word):
+            //append word to misspelled.
+            //Increment num_misspelled.
+            //Return num_misspelled.
+            free(new_node);
+            return num_misspelled;
+        }
     }
+    return num_misspelled;
 }*/
 
 //function to check if a word is correctly spelled
@@ -104,25 +112,29 @@ bool check_word(const char* word, hashmap_t hashtable[])
     //Set int bucket to the output of hash_function(word).
     int bucket = hash_function(word);
     //Set hashmap_t cursor equal to hashmap[bucket].
-    node *curr = hashtable[bucket];
-    //printf("%s\n", curr->word);
-    printf("%s\n", word);
-    //While cursor is not NULL:
+    hashmap_t cursor= (node*) malloc(sizeof(node));
 
-    while(curr != NULL){
-        //If word equals cursor->word:
-        if( strcmp( word, curr ->word)==0) {
-            return true;
-        }
-        else{
-            //Set cursor to cursor->next.
-            curr = curr ->next;
-            if( strcmp( word, curr ->word)==0){
+    cursor = hashtable[bucket];
+
+    //While cursor is not NULL:
+    if (cursor == NULL){
+        return false;
+
+    }else{
+        while(cursor != NULL ){
+
+            //If word equals cursor->word:
+
+             if( strcmp( cursor ->word, word)==0) {//this is failing when it should be true
                 return true;
             }
 
-        }curr = NULL;
+            //Set cursor to cursor->next.*/
+            cursor = cursor -> next;
+
+        }
     }return false;
+
 
 }
 
@@ -141,16 +153,47 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
         exit(0);
     }
     //Start reading in lines
+    //initial character for line read
     char *line = (char*) malloc(sizeof(char) * LENGTH);
-    hashmap_t new_node = (node*) malloc(sizeof(node));
-    hashmap_t curr= (node*) malloc(sizeof(node));
+    //initialize char for cleaned up word
+    char *word_c = (char*) malloc(sizeof(char) * LENGTH);
 
-    while(fgets(line,LENGTH, fp) != NULL){
+    hashmap_t new_node = (node*) malloc(sizeof(node));
+    hashmap_t curr = (node*) malloc(sizeof(node));
+
+    while(fgets(line,LENGTH+1, fp) != NULL){
+
+        ////codeblock for cleaning up the word////
+        int i=0;
+        int j;
+        //cleanup line read, make all characters \0 at the newline
+        for(i; i<LENGTH+1; i++){
+            while(line[i]!= '\n'){
+
+                if (ispunct(line[i])) { //skip character
+                    i++;
+                }
+                else if (isupper(line[i])) {
+                    word_c[i] = tolower(line[i]);
+                    i++;
+
+                }
+                else {
+                    word_c[i] = line[i];
+                    i++;
+                }
+            }
+            //remove new lines that is placed by fgets and make all other spaces 0
+            for(i; i<LENGTH+1; i++) {
+                 line[j] = '\0';
+            }
+        }
+
         //malloc new node
 
         new_node -> next = NULL;
-        strcpy(new_node -> word, line);
-        bucket = hash_function(line);
+        strcpy(new_node -> word, word_c);
+        bucket = hash_function(word_c);
         curr = hashtable[bucket];
 
         if (curr == NULL) //if there isn't a word, then add it and point to null
@@ -163,17 +206,18 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
             printf("%s\n", &(hashtable[bucket]->word));
 
         }else
-            { //should add another conditional to check for more than one node at the collisiion
+            {
+            /*code for adding to end of list
+
             while(curr-> next != NULL){
                 curr = curr->next;
-            }
-            curr ->next = new_node;
-            //new_node->next = hashtable[bucket];
-            //hashtable[bucket] = new_node; //this doesn't seem right but is in the pseudcode
-            //new_node ->next = NULL;
+            }curr ->next = new_node;*/
+            //Add node to front of list, and
+            new_node->next = hashtable[bucket];
+            hashtable[bucket] = new_node;
 
             //hashtable[bucket]=curr;
-            printf("%s\n", curr->word);
+            printf("%s\n", hashtable[bucket]->word);
         }
 
 
@@ -191,8 +235,8 @@ int main() {
     //int num_misspelled = check_words(text_file, hashtable, misspelled);
     bool success = load_dictionary("/home/rob/appsecurity/app-security/testingfunctions/wordlist.txt", hashtable);
     printf("%d\n", success);
-
-    //bool test = check_word(word2, hashtable);
-    //printf("%d\n", test);
+    char *word2 = "yodeled";
+    bool test = check_word(word2, hashtable);
+    printf("%d\n", test);
     return 0;
 }
