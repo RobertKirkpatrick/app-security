@@ -1,0 +1,3 @@
+/home/rob/appsecurity/functiontesting.c/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/rob/appsecurity/functiontesting.c/cmake-build-debug/CMakeFiles/functiontesting_c.dir
+/home/rob/appsecurity/functiontesting.c/cmake-build-debug/CMakeFiles/edit_cache.dir

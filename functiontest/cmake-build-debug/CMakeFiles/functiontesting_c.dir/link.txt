@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/functiontesting_c.dir/main.c.o  -o functiontesting_c 
